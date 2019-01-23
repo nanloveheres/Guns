@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.student.dao.InfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.student.model.Info">
+        <id column="stu_Id" property="stuId" />
+        <result column="stu_name" property="stuName" />
+        <result column="stu_class" property="stuClass" />
+        <result column="stu_grade" property="stuGrade" />
+        <result column="stu_sex" property="stuSex" />
+        <result column="stu_school" property="stuSchool" />
+        <result column="stu_parentPhone" property="stuParentphone" />
+        <result column="stu_admissionTime" property="stuAdmissiontime" />
+        <result column="createDate" property="createDate" />
+        <result column="modifyDate" property="modifyDate" />
+        <result column="deleteFlag" property="deleteFlag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        stu_Id, stu_name, stu_class, stu_grade, stu_sex, stu_school, stu_parentPhone, stu_admissionTime, createDate, modifyDate, deleteFlag
+    </sql>
+
+</mapper>

@@ -1,0 +1,36 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+<!--                             <#input id="stuId" name="" value="${item.stuId}" underline="true"/>
+ -->                        <#input id="stuName" name="学生姓名" value="${item.stuName}" underline="true"/>
+                            <#input id="stuClass" name="学生班级" value="${item.stuClass}" underline="true"/>
+                            <#input id="stuGrade" name="所在年级" value="${item.stuGrade}" underline="true"/>
+                            <#input id="stuSex" name="性别" value="${item.stuSex}" underline="true"/>
+                            <#input id="stuSchool" name="学校" value="${item.stuSchool}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="stuParentphone" name="家长电话" value="${item.stuParentphone}" underline="true"/>
+                            <#input id="stuAdmissiontime" name="入学时间" value="${item.stuAdmissiontime}" underline="true"/>
+<!--                             <#input id="createDate" name="" value="${item.createDate}" underline="true"/>
+                            <#input id="modifyDate" name="" value="${item.modifyDate}" underline="true"/>
+                            <#input id="deleteFlag" name="" value="${item.deleteFlag}" /> -->
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="InfoInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="InfoInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/student/info/info_info.js"></script>
+@}

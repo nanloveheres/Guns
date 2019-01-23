@@ -54,6 +54,39 @@
             overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */  
             text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用*/  
         }
+        .cRaidio{
+            style="margin:7px"
+        }
+        
+        input[type=radio]:after  {
+		    content: "";
+		    display:block;
+		    width: 20px;
+		    height: 20px;
+		    border-radius: 50%;
+		    text-align: center;
+		    line-height: 14px;
+		    font-size: 16px;
+		    color: #fff;
+		    border: 2px solid #ddd;
+		    background-color: #fff;
+		    box-sizing:border-box;
+		    position: relative;
+		    left: -2px;
+		}
+		
+		input[type=radio]:checked:after  {
+		    content: "";
+		    transform:matrix(-0.766044,-0.642788,-0.642788,0.766044,0,0);
+		    -webkit-transform:matrix(-0.766044,-0.642788,-0.642788,0.766044,0,0);
+		    border: 4px solid #1ab394;
+		}
+        .cRaidio .rLabel{
+            margin-right:21px;
+        }
+        .hiddenContent{
+            display:none;
+        }
     </style>
 
     <script type="text/javascript">

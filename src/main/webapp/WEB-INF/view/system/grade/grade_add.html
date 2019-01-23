@@ -1,0 +1,68 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="deptInfoForm">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                    
+                    <div class="form-group">
+                    <label for="email" style="margin-right:21px;padding-left:29px">年级</label>  
+                     <select id="gradeLevel" class="form-control" name="gradeLevel" style="width:43%;display:inline-block">
+                           <option value="小学一年级">小学一年级</option>
+                            <option value="小学二年级">小学二年级</option>
+                            <option value="小学三年级">小学三年级</option>
+                            <option value="小学四年级">小学四年级</option>
+                            <option value="小学五年级">小学五年级</option>
+                            <option value="小学六年级">小学六年级</option>
+                            <option selected="selected" value="初一">初一</option>
+                            <option value="初二">初二</option>
+                            <option value="初三">初三</option>
+                      </select>
+                      </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                    <label for="email" style="margin-right:14px;padding-left:10px">季度类型</label>  
+                     <select id="gradeSeasonclass" class="form-control" name="gradeSeasonclass" style="width:43%;display:inline-block">
+                            <option value="春季">春季</option>
+                            <option value="暑假">暑假</option>
+                            <option value="秋季">秋季</option>
+                            <option value="寒假">寒假</option>
+                            <option value="平日">平日</option>
+                      </select>
+                      </div>
+                   <div class="hr-line-dashed"></div>
+                   
+                       <div class="form-group">
+                    <label for="email" style="margin-right:14px;padding-left:10px">班级类型</label>  
+                      <select id="gradeClassroomname" class="form-control" name="gradeClassroomname" style="width:43%;display:inline-block">
+                            <option value="好学">好学</option>
+                            <option value="精进">精进</option>
+                            <option value="志高">志高</option>
+                            <option value="0">其他</option>
+                      </select>
+                      <div class="hiddenContent">
+                           <input type="text" name="ohterClassroomname" style="width:43%;display:inline-block;margin:17px 0px 0px 79px">
+                      </div>
+                      </div>   
+                </div>
+                
+                <div class="col-sm-6">
+                    <#input id="gradeNum" name="排序" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="GradeInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="GradeInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/grade/grade_info.js"></script>
+@}
