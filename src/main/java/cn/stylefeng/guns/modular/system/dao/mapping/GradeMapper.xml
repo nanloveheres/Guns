@@ -22,4 +22,11 @@
 	   and grade_seasonClass=#{gradeSeasonclass} and grade_level = #{gradeLevel} and IFNULL(deleteFlag,0) != -1 
 	</select>
 
+    <select id="listClassType" resultType="java.lang.String">
+       select grade_classroomName from sys_grade where  IFNULL(deleteFlag,0) != -1  group by grade_classroomName
+    </select>
+
+<select id="listGradeType" resultType="java.lang.String">
+       select grade_level from sys_grade where  IFNULL(deleteFlag,0) != -1  group by grade_level
+    </select>
 </mapper>

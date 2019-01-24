@@ -5,32 +5,61 @@
 
             <div class="row">
                 <div class="col-sm-6 b-r">
-<!--                             <#input id="stuId" name="" value="${item.stuId}" underline="true"/>
- -->                        <#input id="stuName" name="学生姓名" value="${item.stuName}" underline="true"/>
-                            <#input id="stuClass" name="学生班级" value="${item.stuClass}" underline="true"/>
-                            <#input id="stuGrade" name="所在年级" value="${item.stuGrade}" underline="true"/>
-                            <#input id="stuSex" name="性别" value="${item.stuSex}" underline="true"/>
-                            <#input id="stuSchool" name="学校" value="${item.stuSchool}" />
-                </div>
+                    <input id="stuId" type="hidden" name="stuId" value="${item.stuId}"/>
+                    <input id="stuClassHide" type="hidden" name="stuClass" value="${item.stuClass}"/>
+                    <input id="stuGradeHide" type="hidden" name="stuGrade" value="${item.stuGrade}"/>
+                    
+                    <#input id="stuName" name="学生姓名" underline="true" value="${item.stuName}"/>
+                    <!-- <#input id="stuClass" name="学生班级" underline="true"/> -->
+                    <div class="form-group">
+                        <label style="margin-right: 21px; padding-left: 25px">学生班级</label>
+                        <select id="stuClass" name="stuClass"
+                            style="width: 176px; height: 35px">
+                        </select>
+                        <div class="hr-line-dashed"></div>
 
+                        <!-- <#input id="stuGrade" name="所在年级" underline="true"/> -->
+                        <div class="form-group">
+                            <label style="margin-right: 21px; padding-left: 40px">所在年级</label>
+                            <select id="stuGrade" name="stuGrade"
+                                style="width: 176px; height: 35px">
+                            </select>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="col-sm-6" style="height: 40px">
+
+                                <div class="cRaidio" style="margin-left: 21px; width: 100%">
+                                    <label class="radio-inline"> <label class="rLabel">男：</label><input
+                                        id="stuBoy" type="radio" name="sex" value="1" />
+                                    </label> <label class="radio-inline"> <label class="rLabel">
+                                            女：</label><input id="stuGirl" type="radio" name="sex" value="2" />
+                                    </label> <input id="stuSex" type="hidden" name="stuSex" value="${item.stuSex}"/>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-sm-6">
-                            <#input id="stuParentphone" name="家长电话" value="${item.stuParentphone}" underline="true"/>
-                            <#input id="stuAdmissiontime" name="入学时间" value="${item.stuAdmissiontime}" underline="true"/>
-<!--                             <#input id="createDate" name="" value="${item.createDate}" underline="true"/>
-                            <#input id="modifyDate" name="" value="${item.modifyDate}" underline="true"/>
-                            <#input id="deleteFlag" name="" value="${item.deleteFlag}" /> -->
+                    <#input id="stuParentphone" name="家长电话" underline="true" value="${item.stuParentphone}"/>
+                    <#input id="stuAdmissiontime" name="入学时间" underline="true" value="${item.stuAdmissiontime}"/>
+                    <#input id="stuSchool" name="学校" underline="true" value="${item.stuSchool}"/>
+                    <!--                        <#input id="createDate" name="" underline="true"/>
+                            <#input id="modifyDate" name="" underline="true"/>
+                            <#input id="deleteFlag" name="" underline="true"/> -->
                 </div>
             </div>
-
             <div class="row btn-group-m-t">
                 <div class="col-sm-10">
-                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="InfoInfoDlg.editSubmit()"/>
-                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="InfoInfoDlg.close()"/>
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check"
+                        clickFun="InfoInfoDlg.editSubmit()" />
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser"
+                        clickFun="InfoInfoDlg.close()" />
                 </div>
             </div>
-        </div>
 
-    </div>
-</div>
+
+        </div>
 <script src="${ctxPath}/static/modular/student/info/info_info.js"></script>
 @}

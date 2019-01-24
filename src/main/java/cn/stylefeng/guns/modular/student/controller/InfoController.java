@@ -48,7 +48,7 @@ public class InfoController extends BaseController {
      * 跳转到修改student_info
      */
     @RequestMapping("/info_update/{infoId}")
-    public String infoUpdate(@PathVariable Integer infoId, Model model) {
+    public String infoUpdate(@PathVariable String infoId, Model model) {
         Info info = infoService.selectById(infoId);
         model.addAttribute("item",info);
         LogObjectHolder.me().set(info);
@@ -79,7 +79,7 @@ public class InfoController extends BaseController {
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object delete(@RequestParam Integer infoId) {
+    public Object delete(@RequestParam String infoId) {
         infoService.deleteById(infoId);
         return SUCCESS_TIP;
     }
@@ -99,7 +99,7 @@ public class InfoController extends BaseController {
      */
     @RequestMapping(value = "/detail/{infoId}")
     @ResponseBody
-    public Object detail(@PathVariable("infoId") Integer infoId) {
+    public Object detail(@PathVariable("infoId") String infoId) {
         return infoService.selectById(infoId);
     }
 }

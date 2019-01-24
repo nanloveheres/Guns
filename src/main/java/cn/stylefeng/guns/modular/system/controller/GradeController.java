@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -96,6 +100,24 @@ public class GradeController extends BaseController {
     public Object update(Grade grade) {
         gradeService.updateById(grade);
         return SUCCESS_TIP;
+    }
+    
+    /**
+     * 列出班级类型
+     */
+    @RequestMapping(value = "/listClassType")
+    @ResponseBody
+    public List<String> listClassType() {
+        return gradeService.listClassType();
+    }
+    
+    /**
+     * 列出年级类型
+     */
+    @RequestMapping(value = "/listGradeType")
+    @ResponseBody
+    public List<String> listGradeType() {
+        return gradeService.listGradeType();
     }
 
     /**

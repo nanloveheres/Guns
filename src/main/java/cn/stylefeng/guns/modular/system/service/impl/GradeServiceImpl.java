@@ -7,6 +7,9 @@ import cn.stylefeng.guns.modular.util.StringUtil;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +38,18 @@ public class GradeServiceImpl extends ServiceImpl<GradeMapper, Grade> implements
             result = false;
         }
         return result;
+    }
+
+    @Override
+    public List<String> listClassType() {
+        // TODO Auto-generated method stub
+        return gradeMapper.listClassType();
+    }
+
+    @Override
+    public List<String> listGradeType() {
+        // TODO Auto-generated method stub
+        return gradeMapper.listGradeType();
     }
 
 }

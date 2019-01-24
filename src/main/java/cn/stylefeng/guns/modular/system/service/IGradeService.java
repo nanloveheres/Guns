@@ -1,6 +1,10 @@
 package cn.stylefeng.guns.modular.system.service;
 
 import cn.stylefeng.guns.modular.system.model.Grade;
+
+import java.util.List;
+import java.util.Map;
+
 import com.baomidou.mybatisplus.service.IService;
 
 /**
@@ -14,5 +18,9 @@ import com.baomidou.mybatisplus.service.IService;
 public interface IGradeService extends IService<Grade> {
 
     boolean insertGrade(Grade grade);
+
+    List<String> listClassType();
+
+    List<String> listGradeType();
 
 }

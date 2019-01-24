@@ -48,7 +48,10 @@ InfoInfoDlg.close = function() {
  * 收集数据
  */
 InfoInfoDlg.collectData = function() {
+	var sexNumber = $("input[name='sex']:checked").val();
+	$("#stuSex").val(sexNumber);
     this
+    .set('stuId')
     .set('stuName')
     .set('stuClass')
     .set('stuGrade')
@@ -99,5 +102,61 @@ InfoInfoDlg.editSubmit = function() {
 }
 
 $(function() {
+//select 初始化
+		　　//$("#stuClass").remove();//清空select列表数据
+		　//　$("#stuGrade").remove();//清空select列表数据	
+			var sex = $("#stuSex").val();
+			if(sex==1){
+				$("#stuBoy").attr("checked",true);
+			}else{
+				$("#stuGirl").attr("checked",true);
+			}
+		　　$.ajax({
+		　　　　type : "POST",
+		　　　　url : Feng.ctxPath + "/grade/listClassType",
+		　　　　dataType : "JSON",
+		　　success : function(msg) 
+		　　{
+			debugger
+		　　　　$("#stuClass").prepend("<option value='0'>请选择</option>");//添加第一个option值
+		　　　　for (var i = 0; i < msg.length; i++) {
+		　　　　//如果在select中传递其他参数，可以在option 的value属性中添加参数
+		　　　　//$("#selectSM").append("<option value='"+msg.rows[i].id+"'>"+msg.rows[i]+"</option>");
+		　　　　$("#stuClass").append("<option>"+msg[i]+"</option>");
+		　　}
+			//编辑
+			if($("#stuId").val() != null){
+				var className = $("#stuClassHide").val();
+				$("#stuClass").val(className);
+			}
+
+		　　},error:function(){
+			Feng.error("获取数据失败!");
+		　　}
+		　　});
+		
+		　$.ajax({
+		　　　　type : "POST",
+		　　　　url : Feng.ctxPath + "/grade/listGradeType",
+		　　　　dataType : "JSON",
+		　　success : function(msg) 
+		　　{
+		　　　　$("#stuGrade").prepend("<option value='0'>请选择</option>");//添加第一个option值
+		　　　　for (var i = 0; i < msg.length; i++) {
+		　　　　//如果在select中传递其他参数，可以在option 的value属性中添加参数
+		　　　　//$("#selectSM").append("<option value='"+msg.rows[i].id+"'>"+msg.rows[i]+"</option>");
+		　　　　$("#stuGrade").append("<option>"+msg[i]+"</option>");
+		　　}
+			//编辑
+			if($("#stuId").val() != null){
+				var gradeName = $("#stuGradeHide").val();
+				$("#stuGrade").val(gradeName);
+			}
+
+		　　},error:function(){
+			Feng.error("获取数据失败!");
+		　　}
+		　　});
+		
 
 });

@@ -1,6 +1,8 @@
 /**
  * 用户详情对话框（可用于添加和修改对话框）
  */
+var instanceRole;
+
 var UserInfoDlg = {
     userInfoData: {},
     validateFields: {
@@ -22,6 +24,13 @@ var UserInfoDlg = {
             validators: {
                 notEmpty: {
                     message: '部门不能为空'
+                }
+            }
+        },
+        roleSel: {
+            validators: {
+                notEmpty: {
+                    message: '角色不能为空'
                 }
             }
         },
@@ -119,8 +128,65 @@ UserInfoDlg.close = function () {
  * @returns
  */
 UserInfoDlg.onClickDept = function (e, treeId, treeNode) {
+	debugger
     $("#citySel").attr("value", instance.getSelectedVal());
     $("#deptid").attr("value", treeNode.id);
+};
+
+/**
+ * 点击角色input框时
+ *
+ * @param e
+ * @param treeId
+ * @param treeNode
+ * @returns
+ */
+UserInfoDlg.onClickRole = function (e, treeId, treeNode) {
+	debugger
+    $("#roleSel").attr("value", instanceRole.getSelectedVal());
+    $("#roleid").attr("value", treeNode.id);
+};
+
+/**
+ * 显示角色选择的树
+ *
+ * @returns
+ */
+UserInfoDlg.showRoleSelectTree = function () {
+	debugger
+    var cityObj = $("#roleSel");
+    var cityOffset = $("#roleSel").offset();
+    $("#menuRoleContent").css({
+        left: cityOffset.left + "px",
+        top: cityOffset.top + cityObj.outerHeight() + "px"
+    }).slideDown("fast");
+
+    $("body").bind("mousedown", onRoleBodyDown);
+};
+
+
+/**
+ * 显示用户详情角色选择的树
+ *
+ * @returns
+ */
+UserInfoDlg.showInfoRoleSelectTree = function () {
+    var cityObj = $("#roleSel");
+    var cityPosition = $("#roleSel").position();
+    $("#menuRoleContent").css({
+        left: cityPosition.left + "px",
+        top: cityPosition.top + cityObj.outerHeight() + "px"
+    }).slideDown("fast");
+
+    $("body").bind("mousedown", onRoleBodyDown);
+};
+
+/**
+ * 隐藏角色选择的树
+ */
+UserInfoDlg.hideRoleSelectTree = function () {
+    $("#menuRoleContent").fadeOut("fast");
+    $("body").unbind("mousedown", onRoleBodyDown);// mousedown当鼠标按下就可以触发，不用弹起
 };
 
 /**
@@ -138,6 +204,7 @@ UserInfoDlg.showDeptSelectTree = function () {
 
     $("body").bind("mousedown", onBodyDown);
 };
+
 
 /**
  * 显示用户详情部门选择的树
@@ -168,7 +235,7 @@ UserInfoDlg.hideDeptSelectTree = function () {
  */
 UserInfoDlg.collectData = function () {
     this.set('id').set('account').set('sex').set('password').set('avatar')
-        .set('email').set('name').set('birthday').set('rePassword').set('deptid').set('phone');
+        .set('email').set('name').set('birthday').set('rePassword').set('roleid').set('deptid').set('phone');
 };
 
 /**
@@ -264,6 +331,13 @@ UserInfoDlg.chPwd = function () {
 
 };
 
+function onRoleBodyDown(event) {
+    if (!(event.target.id == "menuBtn" || event.target.id == "menuRoleContent" || $(
+            event.target).parents("#menuRoleContent").length > 0)) {
+        UserInfoDlg.hideRoleSelectTree();
+    }
+}
+
 function onBodyDown(event) {
     if (!(event.target.id == "menuBtn" || event.target.id == "menuContent" || $(
             event.target).parents("#menuContent").length > 0)) {
@@ -281,6 +355,11 @@ $(function () {
     ztree.bindOnClick(UserInfoDlg.onClickDept);
     ztree.init();
     instance = ztree;
+    
+    var rtree = new $ZTree("roleTreeDemo", "/role/roleTreeList");
+    rtree.bindOnClick(UserInfoDlg.onClickRole);
+    rtree.init();
+    instanceRole = rtree;
 
     // 初始化头像上传
     var avatarUp = new $WebUpload("avatar");

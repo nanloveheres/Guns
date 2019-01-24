@@ -18,10 +18,18 @@ laydate.render({
 Info.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
+        	{title: 'id', field: 'stuId', visible: false, align: 'center', valign: 'middle'},
             {title: '学生姓名', field: 'stuName', visible: true, align: 'center', valign: 'middle'},
             {title: '学生班级', field: 'stuClass', visible: true, align: 'center', valign: 'middle'},
             {title: '所在年级', field: 'stuGrade', visible: true, align: 'center', valign: 'middle'},
-            {title: '性别', field: 'stuSex', visible: true, align: 'center', valign: 'middle'},
+            {title: '性别', field: 'stuSex', visible: true, align: 'center', valign: 'middle',
+            	formatter: function (value, row, index) {
+            	if(1==value){
+            		return '男';
+            	}else{
+            		return '女';
+            	}
+            }},
             {title: '学校', field: 'stuSchool', visible: true, align: 'center', valign: 'middle'},
             {title: '家长电话', field: 'stuParentphone', visible: true, align: 'center', valign: 'middle'},
             {title: '入学时间', field: 'stuAdmissiontime', visible: true, align: 'center', valign: 'middle'}
@@ -38,6 +46,7 @@ Info.check = function () {
         Feng.info("请先选中表格中的某一记录！");
         return false;
     }else{
+    	debugger
         Info.seItem = selected[0];
         return true;
     }
@@ -69,7 +78,7 @@ Info.openInfoDetail = function () {
             area: ['800px', '420px'], //宽高
             fix: false, //不固定
             maxmin: true,
-            content: Feng.ctxPath + '/info/info_update/' + Info.seItem.id
+            content: Feng.ctxPath + '/info/info_update/' + Info.seItem.stuId
         });
         this.layerIndex = index;
     }
@@ -86,7 +95,7 @@ Info.delete = function () {
         }, function (data) {
             Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
-        ajax.set("infoId",this.seItem.id);
+        ajax.set("infoId",this.seItem.stuId);
         ajax.start();
     }
 };
