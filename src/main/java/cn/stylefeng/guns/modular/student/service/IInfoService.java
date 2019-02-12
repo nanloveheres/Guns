@@ -2,6 +2,7 @@ package cn.stylefeng.guns.modular.student.service;
 
 import com.baomidou.mybatisplus.service.IService;
 
+import cn.stylefeng.guns.core.shiro.ShiroUser;
 import cn.stylefeng.guns.modular.student.model.Info;
 
 /**
@@ -16,4 +17,7 @@ public interface IInfoService extends IService<Info> {
 
     boolean insertStudent(Info info);
 
+    Object listUserStudent(ShiroUser user);
+    
+    boolean deleteStudentById(String stuId);
 }

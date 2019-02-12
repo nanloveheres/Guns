@@ -20,8 +20,13 @@ Info.initColumn = function () {
         {field: 'selectItem', radio: true},
         	{title: 'id', field: 'stuId', visible: false, align: 'center', valign: 'middle'},
             {title: '学生姓名', field: 'stuName', visible: true, align: 'center', valign: 'middle'},
-            {title: '学生班级', field: 'stuClass', visible: true, align: 'center', valign: 'middle'},
-            {title: '所在年级', field: 'stuGrade', visible: true, align: 'center', valign: 'middle'},
+            {title: '学生班级', field: 'stuClass', visible: true, align: 'center', valign: 'middle',
+            	formatter: function (value, row, index) {
+                	return row.stuGrade+value+"班";
+            	}
+            },
+             
+            //{title: '所在年级', field: 'stuGrade', visible: true, align: 'center', valign: 'middle'},
             {title: '性别', field: 'stuSex', visible: true, align: 'center', valign: 'middle',
             	formatter: function (value, row, index) {
             	if(1==value){
@@ -65,6 +70,18 @@ Info.openAddInfo = function () {
         content: Feng.ctxPath + '/info/info_add'
     });
     this.layerIndex = index;
+};
+
+/**
+ * 打开查看学生数据详情
+ */
+Info.dataInfo = function () {
+	if(this.check()){	
+		debugger
+		var url = Feng.ctxPath+"/info/info_dataInfo?stuName="+Info.seItem.stuName;
+		//window.location.href=url;
+		Feng.newCrontab(url,Info.seItem.stuName+"的数据信息");
+	}
 };
 
 /**

@@ -15,11 +15,20 @@
         <result column="createDate" property="createDate" />
         <result column="modifyDate" property="modifyDate" />
         <result column="deleteFlag" property="deleteFlag" />
+        <result column="teacher_id" property="teacherId" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         stu_Id, stu_name, stu_class, stu_grade, stu_sex, stu_school, stu_parentPhone, stu_admissionTime, createDate, modifyDate, deleteFlag
     </sql>
+
+	<select id="listUserStudent" resultMap="BaseResultMap">
+	   select * from stu_info where IFNULL(deleteFlag,0) != -1 and teacher_id = #{1}
+	</select>
+	
+	<select id="deleteStudent" resultType="java.lang.Integer">
+        update stu_info set deleteFlag = -1 where stu_Id = #{1} 
+    </select>
 
 </mapper>

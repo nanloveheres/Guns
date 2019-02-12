@@ -1,6 +1,9 @@
 package cn.stylefeng.guns.modular.student.dao;
 
 import cn.stylefeng.guns.modular.student.model.Info;
+
+import java.util.List;
+
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
@@ -12,5 +15,9 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @since 2019-01-21
  */
 public interface InfoMapper extends BaseMapper<Info> {
+
+    List<Info> listUserStudent(Integer id);
+    
+    Integer deleteStudent(String id);
 
 }

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.stylefeng.guns.core.log.LogObjectHolder;
+import cn.stylefeng.guns.core.shiro.ShiroKit;
+import cn.stylefeng.guns.core.shiro.ShiroUser;
 import cn.stylefeng.guns.modular.student.model.Info;
 import cn.stylefeng.guns.modular.student.service.IInfoService;
 import cn.stylefeng.roses.core.base.controller.BaseController;
@@ -43,7 +45,16 @@ public class InfoController extends BaseController {
     public String infoAdd() {
         return PREFIX + "info_add.html";
     }
-
+    
+    /**
+     * 跳转到student_info首页
+     */
+    @RequestMapping("/info_dataInfo")
+    public String dataInfo(@RequestParam String stuName,Model model) {
+        model.addAttribute("name",stuName);
+        return PREFIX + "info_main.html";
+    }
+    
     /**
      * 跳转到修改student_info
      */
@@ -61,7 +72,8 @@ public class InfoController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        return infoService.selectList(null);
+        ShiroUser user = ShiroKit.getUser();
+        return infoService.listUserStudent(user);
     }
 
     /**
@@ -80,7 +92,7 @@ public class InfoController extends BaseController {
     @RequestMapping(value = "/delete")
     @ResponseBody
     public Object delete(@RequestParam String infoId) {
-        infoService.deleteById(infoId);
+        infoService.deleteStudentById(infoId);
         return SUCCESS_TIP;
     }
 

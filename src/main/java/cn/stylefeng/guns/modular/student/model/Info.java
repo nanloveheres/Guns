@@ -64,7 +64,8 @@ public class Info extends Model<Info> {
     private Date modifyDate;
     @TableField("deleteFlag")
     private Integer deleteFlag;
-
+    @TableField("teacher_id")
+    private String teacherId;
 
     public String getStuId() {
         return stuId;
@@ -175,4 +176,13 @@ public class Info extends Model<Info> {
         ", deleteFlag=" + deleteFlag +
         "}";
     }
+
+    public String getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
+    }
+    
 }
